@@ -180,7 +180,9 @@ function ScreenController() {
 
 		scoreCountDiv.textContent = '';
 		players.forEach((player, index) => {
-			scoreCountDiv.textContent += `Player ${index + 1}: ${player.getScore()}`;
+			const scoreSpan = document.createElement('h2');
+			scoreSpan.textContent = `Player ${player.getMark()}: ${player.getScore()}`;
+			scoreCountDiv.appendChild(scoreSpan);
 		});
 
 		const currentBoard = game.getBoard();
@@ -188,7 +190,7 @@ function ScreenController() {
 		currentBoard.forEach((row, rowIndex) => {
 			row.forEach((cell, cellIndex) => {
 				const cellBtn = document.createElement('button');
-				cellBtn.textContent = cell === null ? 'test' : cell;
+				cellBtn.textContent = cell === null ? '' : cell;
 				cellBtn.classList.add('cell');
 				cellBtn.dataset.row = rowIndex;
 				cellBtn.dataset.column = cellIndex;
